@@ -3,7 +3,7 @@ import React from 'react'
 import NewsCard from "../newsCard/NewsCard"
 import "./NewsContent.css"
 
-const NewsContent = ({newsArray, newsResults, loadmore, setLoadmore}) => {
+const NewsContent = ({newsArray, newsResults, loadmore}) => {
   return (
     <Container maxWidth="md">
       <div className='content'>
@@ -12,15 +12,13 @@ const NewsContent = ({newsArray, newsResults, loadmore, setLoadmore}) => {
         })}
 
         {
-            loadmore <= newsResults && (
+            loadmore && (
                 <>
-                    <hr/>
-                    <button 
-                        onClick={() => setLoadmore(loadmore+20)}
-                        className='loadmore'
-                    >
+                    <hr/><a href={loadmore}>
+                    <button className='loadmore'>
                     Load More
                     </button>
+                    </a>
                 </>
             )
         }

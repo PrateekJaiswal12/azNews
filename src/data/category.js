@@ -1,8 +1,10 @@
 
 const categories = [
+  "domestic",
+  "top",
   "bussiness",
   "entertainment",
-  "general",
+  "education",
   "health",
   "science",
   "sports",

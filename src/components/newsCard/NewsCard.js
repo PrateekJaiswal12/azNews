@@ -2,18 +2,13 @@ import React from 'react'
 import "./NewsCard.css"
 
 const NewsCard = ({ newsItem }) => {
-    const fulldate = new Date(newsItem.publishedAt);
-    var date = fulldate.toString().split(" ");
-    const hour = parseInt(date[4].substring(0,2));
-    const time = hour > 12 ? true : false;
-
 
   return (
     <div className='newsCard'>
       <img 
         alt={newsItem.title} 
-        src={newsItem.urlToImage
-         ? newsItem.urlToImage
+        src={newsItem.image_url
+         ? newsItem.image_url
          : "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
         }
         className='newsImage'
@@ -26,11 +21,8 @@ const NewsCard = ({ newsItem }) => {
                 <a href={newsItem.url} target='__blank'>
                 <b style={{color:"#222"}}>short</b>
                 </a>
-                <span className='muted'> by {newsItem.author?newsItem.author:"unknown"} / {" "}
-                    {
-                        time?`${hour-12}:${date[4].substring(3,5)} PM`
-                        : `${hour}:${date[4].substring(3,5)} AM`
-                    } on {date[2]} {date[1]} {date[3]}, {date[0]} 
+                <span className='muted'> by {newsItem.creator?newsItem.creator:"unknown"} / {" "}
+                    {newsItem.pubDate}
                 </span>
             </span>
           </div>
@@ -38,8 +30,8 @@ const NewsCard = ({ newsItem }) => {
             <div className='description'> {newsItem.description} </div>
             <span className='readmore'>
                 read more at{" "}
-                <a href={newsItem.url} target='__blank'>
-                <b style={{color:"#222"}}>{newsItem.source.name}</b>
+                <a href={newsItem.urlinkl} target='__blank'>
+                <b style={{color:"#222"}}>{newsItem.source_name}</b>
                 </a>
             </span>
           </div>

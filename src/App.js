@@ -8,20 +8,21 @@ import Footer from './components/Footer';
 
 
 function App() {
-  const [category, setCategory] = useState("general");
+  const [category, setCategory] = useState("top");
   const [newsArray, setNewsArray] = useState([]);
   const [newsResults, setNewsResults] = useState();
-  const [loadmore, setLoadmore] = useState(20);
+  const [loadmore, setLoadmore] = useState(null);
 
 
   const newsApi = async () => {
     try {
       // const proxyUrl = "https://cors.anywhere.herokuapp.com/";
       const news = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&category=${category}&pageSize=${loadmore}`
+        `https://newsdata.io/api/1/latest?apikey=${apiKey}&q=region=india&category=${category}`
       );
-
-      setNewsArray(news.data.articles);
+        // console.log(news);
+      setLoadmore(news.data.nextPage);
+      setNewsArray(news.data.results);
       setNewsResults(news.data.totalResults);
     } catch (error) {
       console.error(error);
@@ -38,7 +39,6 @@ function App() {
       <NavigationAznews setCategory={setCategory}/>
       <NewsContent 
         loadmore={loadmore}
-        setLoadmore={setLoadmore}
         newsArray={newsArray} 
         newsResults={newsResults}
       />
